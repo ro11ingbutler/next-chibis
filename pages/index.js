@@ -1,10 +1,11 @@
 import Nav from "/components/Nav.js"
+import Hero from "../components/Hero"
 
 export default function Home() {
     return (
         <>
             <Nav></Nav>
-            <div>Hello world</div>
+            <Hero></Hero>
         </>
     )
 }
