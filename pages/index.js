@@ -6,6 +6,7 @@ export default function Home() {
         <>
             <Nav></Nav>
             <Hero></Hero>
+            <Hero></Hero>
         </>
     )
 }
