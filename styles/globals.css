@@ -2,7 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Optima";
+  src: url("../public/fonts/optima.otf");
+}
+
 body {
   @apply bg-slate-900;
-  @apply font-sans;
+  @apply font-optima;
 }

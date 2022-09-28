@@ -43,13 +43,13 @@ export default function MintingGrid() {
 
     function handleTraitChange(event, type) {
         const newTrait = {}
-        
+
         if (!event.target.value) {
             newTrait[type] = null
             setSelectedTraits({ ...selectedTraits, ...newTrait })
         } else {
             newTrait[type] = traits[type].find(item => item.id === event.target.value)
-            
+
             setSelectedTraits({ ...selectedTraits, ...newTrait })
         }
     }
@@ -71,16 +71,17 @@ export default function MintingGrid() {
     }
 
     function handleRedoClick() {
-        setSelectedTraits({...selectedTraits, ...defaultTraits})
+        setSelectedTraits({ ...selectedTraits, ...defaultTraits })
     }
 
     return (
         <>
-            <div className="h-4/6 w-4/6 container mx-auto my-12 grid grid-cols-4 relative">
+            <div className="h-4/6 w-4/6 container mx-auto my-12 grid grid-cols-4 relative bg-gradient-to-br from-blue-900/20 via-transparent to-blue-900/20">
+
                 <div className="grid grid-flow-col gap-5 place-content-center">
                     <TraitDropdown traits={traits.eyes} selectedTrait={selectedTraits.eyes} type="eyes" onTraitChange={handleTraitChange}></TraitDropdown>
                 </div>
-                <div className="col-start-2 col-span-2 row-span-4  relative">
+                <div className="col-start-2 col-span-2 row-span-4 m-10 relative">
                     <MintingPreview selectedTraits={selectedTraits}></MintingPreview>
                 </div>
                 <div className="grid grid-flow-col gap-5 place-content-center">
@@ -105,8 +106,10 @@ export default function MintingGrid() {
                     <Button outline onClick={handleRandomiseClick}>Randomise</Button>
                 </div>
 
-
-
+                <div className="absolute -inset-x-24 bottom-0 h-px bg-blue-300/40 [mask-image:linear-gradient(to_right,transparent,white_4rem,white_calc(100%-4rem),transparent)]"></div>
+                <div className="absolute -inset-y-8 left-0 w-px bg-blue-300/40 [mask-image:linear-gradient(to_top,transparent,white_4rem,white_calc(100%-4rem),transparent)]"></div>
+                <div className="absolute -inset-y-24 right-0 w-px bg-blue-300/40 [mask-image:linear-gradient(to_top,transparent,white_4rem,white_calc(100%-4rem),transparent)]"></div>
+                <div className="absolute -inset-x-24 top-0 h-px bg-blue-300/40 [mask-image:linear-gradient(to_left,transparent,white_4rem,white_calc(100%-4rem),transparent)]"></div>
             </div>
         </>
     )
