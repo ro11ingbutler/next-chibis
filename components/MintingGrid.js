@@ -23,37 +23,33 @@ import mouth2 from "/public/traits/mouth/mouth2.png"
 
 export default function MintingGrid() {
 
-    const [eyes, setEyes] = useState([{ id: "eyes1", name: "Jester Eyes", image: eyes1 }, { id: "eyes2", name: "Tiger Eyes", image: eyes2 }])
-    const [brows, setBrows] = useState([{ Trait1: "Trait #1" }, { Trait2: "Trait #2" }, { Trait3: "Trait #3" }])
-    const [head, setHead] = useState([{ Trait1: "Trait #1" }, { Trait2: "Trait #2" }, { Trait3: "Trait #3" }])
-    const [body, setBody] = useState([{ id: "body1", name: "Body 1", image: body1 }, { id: "body2", name: "Body 2", image: body2 }])
-
-    const [mouth, setMouth] = useState([{ id: "mouth1", name: "Mouth 1", image: mouth1 }, { id: "mouth2", name: "Mouth 2", image: mouth2 }])
-    const [hair, setHair] = useState([{ id: "hair1", name: "Hair 1", image: hair1 }, { id: "hair2", name: "Hair 2", image: hair2 }, { id: "hair3", name: "Hair 3", image: hair3 }])
-    const [bg, setBg] = useState([{ id: "bg1", name: "BG 1", image: bg1 }, { id: "bg2", name: "BG 2", image: bg2 }])
-    const [extra2, setExtra2] = useState([{ Trait1: "Trait #1" }, { Trait2: "Trait #2" }, { Trait3: "Trait #3" }])
+    const [traits, setTraits] = useState({
+        eyes: [{ id: "eyes1", name: "Jester Eyes", image: eyes1 }, { id: "eyes2", name: "Tiger Eyes", image: eyes2 }],
+        body: [{ id: "body1", name: "Body 1", image: body1 }, { id: "body2", name: "Body 2", image: body2 }],
+        mouth: [{ id: "mouth1", name: "Mouth 1", image: mouth1 }, { id: "mouth2", name: "Mouth 2", image: mouth2 }],
+        hair: [{ id: "hair1", name: "Hair 1", image: hair1 }, { id: "hair2", name: "Hair 2", image: hair2 }, { id: "hair3", name: "Hair 3", image: hair3 }],
+        bg: [{ id: "bg1", name: "BG 1", image: bg1 }, { id: "bg2", name: "BG 2", image: bg2 }],
+    })
 
     const defaultTraits = {
         eyes: null,
-        brows: null,
-        head: null,
         body: null,
         mouth: null,
         hair: null,
         bg: null,
-        extra2: null,
     }
 
     const [selectedTraits, setSelectedTraits] = useState(defaultTraits)
 
     function handleTraitChange(event, type) {
         const newTrait = {}
-
-        if (event.target.value === "{}") {
+        
+        if (!event.target.value) {
             newTrait[type] = null
             setSelectedTraits({ ...selectedTraits, ...newTrait })
         } else {
-            newTrait[type] = JSON.parse(event.target.value)
+            newTrait[type] = traits[type].find(item => item.id === event.target.value)
+            
             setSelectedTraits({ ...selectedTraits, ...newTrait })
         }
     }
@@ -63,22 +59,13 @@ export default function MintingGrid() {
     }
 
     function handleRandomiseClick(event) {
-        const newTrait = {
-            eyes: null,
-            brows: null,
-            head: null,
-            body: null,
-            mouth: null,
-            hair: null,
-            bg: null,
-            extra2: null,
-        }
+        const newTrait = defaultTraits
 
-        newTrait.eyes = eyes[Math.floor(Math.random() * eyes.length)]
-        newTrait.body = body[Math.floor(Math.random() * body.length)]
-        newTrait.mouth = mouth[Math.floor(Math.random() * mouth.length)]
-        newTrait.hair = hair[Math.floor(Math.random() * hair.length)]
-        newTrait.bg = bg[Math.floor(Math.random() * bg.length)]
+        newTrait.eyes = traits.eyes[Math.floor(Math.random() * traits.eyes.length)]
+        newTrait.body = traits.body[Math.floor(Math.random() * traits.body.length)]
+        newTrait.mouth = traits.mouth[Math.floor(Math.random() * traits.mouth.length)]
+        newTrait.hair = traits.hair[Math.floor(Math.random() * traits.hair.length)]
+        newTrait.bg = traits.bg[Math.floor(Math.random() * traits.bg.length)]
 
         setSelectedTraits({ ...selectedTraits, ...newTrait })
     }
@@ -91,22 +78,22 @@ export default function MintingGrid() {
         <>
             <div className="h-4/6 w-4/6 container mx-auto my-12 grid grid-cols-4 relative">
                 <div className="grid grid-flow-col gap-5 place-content-center">
-                    <TraitDropdown traits={eyes} selectedTrait={selectedTraits.eyes} trait="eyes" onTraitChange={handleTraitChange}></TraitDropdown>
+                    <TraitDropdown traits={traits.eyes} selectedTrait={selectedTraits.eyes} type="eyes" onTraitChange={handleTraitChange}></TraitDropdown>
                 </div>
                 <div className="col-start-2 col-span-2 row-span-4  relative">
                     <MintingPreview selectedTraits={selectedTraits}></MintingPreview>
                 </div>
                 <div className="grid grid-flow-col gap-5 place-content-center">
-                    <TraitDropdown traits={hair} selectedTrait={selectedTraits.hair} trait="hair" onTraitChange={handleTraitChange}></TraitDropdown>
+                    <TraitDropdown traits={traits.hair} selectedTrait={selectedTraits.hair} type="hair" onTraitChange={handleTraitChange}></TraitDropdown>
                 </div>
                 <div className="grid grid-flow-col gap-5 place-content-center">
-                    <TraitDropdown traits={mouth} selectedTrait={selectedTraits.mouth} trait="mouth" onTraitChange={handleTraitChange}></TraitDropdown>
+                    <TraitDropdown traits={traits.mouth} selectedTrait={selectedTraits.mouth} type="mouth" onTraitChange={handleTraitChange}></TraitDropdown>
                 </div>
                 <div className="grid grid-flow-col gap-5 place-content-center">
-                    <TraitDropdown traits={body} selectedTrait={selectedTraits.body} trait="body" onTraitChange={handleTraitChange}></TraitDropdown>
+                    <TraitDropdown traits={traits.body} selectedTrait={selectedTraits.body} type="body" onTraitChange={handleTraitChange}></TraitDropdown>
                 </div>
                 <div className="grid grid-flow-col gap-5 place-content-center">
-                    <TraitDropdown traits={bg} selectedTrait={selectedTraits.bg} trait="bg" onTraitChange={handleTraitChange}></TraitDropdown>
+                    <TraitDropdown traits={traits.bg} selectedTrait={selectedTraits.bg} type="bg" onTraitChange={handleTraitChange}></TraitDropdown>
                 </div>
                 <div className="grid grid-flow-col gap-5 place-content-center">07</div>
                 <div className="grid grid-flow-col gap-5 place-content-center">08</div>
