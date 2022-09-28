@@ -71,7 +71,7 @@ export default function MintingGrid() {
     }
 
     function handleRedoClick() {
-        setSelectedTraits(defaultTraits)
+        setSelectedTraits({...selectedTraits, ...defaultTraits})
     }
 
     return (
