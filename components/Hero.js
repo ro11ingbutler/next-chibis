@@ -16,12 +16,10 @@ export default function Hero() {
                     <Button solid>Contract Address</Button>
                 </div>
             </section>
-            <section className="basis-1/2 grid grid-flow-col place-content-center">
-                <Card className="translate-x-16 " image={hitrun}></Card>
+            <section className="basis-1/2 grid grid-flow-col place-content-center relative">
+                <Card className="translate-x-16" image={hitrun}></Card>
                 <Card className="z-10 scale-[1.30]" image={rb}></Card>
-                <Card className="-translate-x-16 " image={jgt}></Card>
-                {/* <Card className="absolute mx-auto "></Card> */}
-                {/* <Card className="my-20 absolute"></Card> */}
+                <Card className="-translate-x-16" image={jgt}></Card>
             </section>
         </div>
     )

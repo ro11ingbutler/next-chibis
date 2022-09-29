@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShuffle } from "@fortawesome/free-solid-svg-icons"
+import { faRotateLeft } from "@fortawesome/free-solid-svg-icons"
+import { faMagicWandSparkles } from "@fortawesome/free-solid-svg-icons"
+
 import Image from "next/image"
 import TraitDropdown from "./TraitDropdown"
 import MintingPreview from "./MintingPreview"
+import MintingSummary from "./MintingSummary"
 import Button from "./Button"
 
 import eyes1 from "/public/traits/eyes/eyes1.png"
@@ -76,34 +82,41 @@ export default function MintingGrid() {
 
     return (
         <>
-            <div className="h-4/6 w-4/6 container mx-auto my-12 grid grid-cols-4 relative bg-gradient-to-br from-blue-900/20 via-transparent to-blue-900/20">
+            <div className="h-4/6 w-4/6 container mx-auto my-12 grid grid-cols-4 relative bg-gradient-to-br from-blue-900/20 via-transparent to-blue-900/20 p-10">
 
-                <div className="grid grid-flow-col gap-5 place-content-center">
+                <div className="grid grid-flow-col gap-4 place-content-center bg-blue-900/10">
                     <TraitDropdown traits={traits.eyes} selectedTrait={selectedTraits.eyes} type="eyes" onTraitChange={handleTraitChange}></TraitDropdown>
                 </div>
-                <div className="col-start-2 col-span-2 row-span-4 m-10 relative">
+                <div className="col-start-2 col-span-2 row-span-4 relative">
                     <MintingPreview selectedTraits={selectedTraits}></MintingPreview>
                 </div>
-                <div className="grid grid-flow-col gap-5 place-content-center">
+                <div className="grid grid-flow-col gap-4 place-content-center bg-blue-900/10">
                     <TraitDropdown traits={traits.hair} selectedTrait={selectedTraits.hair} type="hair" onTraitChange={handleTraitChange}></TraitDropdown>
                 </div>
-                <div className="grid grid-flow-col gap-5 place-content-center">
+                <div className="grid grid-flow-col gap-4 place-content-center ">
                     <TraitDropdown traits={traits.mouth} selectedTrait={selectedTraits.mouth} type="mouth" onTraitChange={handleTraitChange}></TraitDropdown>
                 </div>
-                <div className="grid grid-flow-col gap-5 place-content-center">
+                <div className="grid grid-flow-col gap-4 place-content-center">
                     <TraitDropdown traits={traits.body} selectedTrait={selectedTraits.body} type="body" onTraitChange={handleTraitChange}></TraitDropdown>
                 </div>
-                <div className="grid grid-flow-col gap-5 place-content-center">
+                <div className="grid grid-flow-col gap-4 place-content-center bg-blue-900/10">
                     <TraitDropdown traits={traits.bg} selectedTrait={selectedTraits.bg} type="bg" onTraitChange={handleTraitChange}></TraitDropdown>
                 </div>
-                <div className="grid grid-flow-col gap-5 place-content-center">07</div>
-                <div className="grid grid-flow-col gap-5 place-content-center">08</div>
-                <div className="grid grid-flow-col gap-5 place-content-center">09</div>
+                <div className="grid grid-flow-row gap-4 row-span-3 p-6 bg-blue-900/10">
+                    <MintingSummary selectedTraits={selectedTraits}></MintingSummary>
+                    <Button outline onClick={handleMintClick} className="flex place-items-center gap-3"><FontAwesomeIcon icon={faMagicWandSparkles} className="h-4"></FontAwesomeIcon>Mint my Chibi</Button>
+                </div>
+                <div className="grid grid-flow-col gap-4 place-content-center">
+                    <TraitDropdown traits={traits.bg} selectedTrait={selectedTraits.bg} type="bg" onTraitChange={handleTraitChange}></TraitDropdown>
+                </div>
+                {/* <div className="grid grid-flow-col gap-4 place-content-center ">09</div> */}
+                <div className="grid grid-flow-col gap-4 place-content-center bg-blue-900/10">
+                    <TraitDropdown traits={traits.bg} selectedTrait={selectedTraits.bg} type="bg" onTraitChange={handleTraitChange}></TraitDropdown>
+                </div>
 
-                <div className="col-span-4 grid gap-5 grid-flow-col place-content-center">
-                    <Button outline>Mint my Chibi</Button>
-                    <Button outline onClick={handleRedoClick}>Redo</Button>
-                    <Button outline onClick={handleRandomiseClick}>Randomise</Button>
+                <div className="col-span-2 grid gap-4 grid-flow-col place-content-center">
+                    <Button outline onClick={handleRedoClick} className="flex place-items-center gap-3"><FontAwesomeIcon icon={faRotateLeft} className="h-4"></FontAwesomeIcon>Redo</Button>
+                    <Button outline onClick={handleRandomiseClick} className="flex place-items-center gap-3"><FontAwesomeIcon icon={faShuffle} className="h-4"></FontAwesomeIcon> Randomise</Button>
                 </div>
 
                 <div className="absolute -inset-x-24 bottom-0 h-px bg-blue-300/40 [mask-image:linear-gradient(to_right,transparent,white_4rem,white_calc(100%-4rem),transparent)]"></div>
