@@ -1,6 +1,8 @@
+import Image from "next/image"
 import { useEffect, useRef } from "react"
 import NavItem from "./NavItem"
 import ScrollDown from "./ScrollDown"
+import logo from "/public/logo.png"
 
 export default function Nav(props) {
 
@@ -31,11 +33,13 @@ export default function Nav(props) {
         <>
             <nav>
                 <ul className="flex flex-row place-content-center fixed top-0 left-0 right-0 z-20 text-white font-semibold border-b-2 border-slate-800/75" ref={navRef}>
-                    <NavItem href="/" logo>Logo</NavItem>
-                    <NavItem href="/">Home</NavItem>
-                    <NavItem href="/">Home</NavItem>
-                    <NavItem href="/">Home</NavItem>
-                    <NavItem href="/">0xC4...b42</NavItem>
+                    <NavItem href="/" logo>
+                        <Image src={logo} layout="fixed" height="30" width="32" alt="..."></Image>
+                    </NavItem>
+                    <NavItem href="/">Mint</NavItem>
+                    <NavItem href="/">About</NavItem>
+                    <NavItem href="/">Portal</NavItem>
+                    <NavItem href="/">Connect Wallet</NavItem>
                 </ul>
             </nav>
             {props.scrollDown && <ScrollDown compRef={scrollDownRef}></ScrollDown>}
