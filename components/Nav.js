@@ -31,13 +31,14 @@ export default function Nav(props) {
 
     return (
         <>
-            <nav>
-                <ul className="flex flex-row place-content-center fixed top-0 left-0 right-0 z-20 text-white font-semibold border-b-2 border-slate-800/75" ref={navRef}>
-                    <NavItem href="/" logo>
-                        <Image src={logo} layout="fixed" height="30" width="32" alt="..."></Image>
+            <nav className="fixed top-0 left-0 right-0 z-20 h-16 border-b-2 border-slate-800/75 flex items-center place-content-center bg-gradient-to-br from-slate-800/50 via-black/50 to-slate-900/50 box-content" ref={navRef}>
+                <ul className="flex flex-row place-content-center text-white font-semibold" >
+                    <NavItem href="/">
+                        <Image src={logo} className="" height="30" width="32" alt="..."></Image>
                     </NavItem>
                     <NavItem href="/">Mint</NavItem>
                     <NavItem href="/">About</NavItem>
+                    <NavItem href="/">Manifesto</NavItem>
                     <NavItem href="/">Portal</NavItem>
                     <NavItem href="/">Connect Wallet</NavItem>
                 </ul>
