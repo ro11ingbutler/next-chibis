@@ -13,7 +13,7 @@ export default function MintingSummary(props) {
     const { selectedTraits } = props
     return (
         <>
-            <div className="text-white">
+            <div className="text-white flex flex-col place-content-center">
                 <p className="text-3xl ">Traits</p>
                 <Divider></Divider>
                 <ul className="p-2">

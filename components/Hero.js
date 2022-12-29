@@ -5,6 +5,7 @@ import jgt from "/public/jgt.png"
 import Button from "./Button"
 import styles from '../styles/Hero.module.css'
 
+
 export default function Hero() {
     return (
         <section id="hero" className="flex mx-auto lg:flex-row flex-col-reverse h-screen bg-gradient-to-br from-slate-800 via-black/50 to-slate-900 py-6">
@@ -20,7 +21,7 @@ export default function Hero() {
                     <Button solid>Contract Address</Button>
                 </div>
             </div>
-            <div className="mx-auto grid grid-flow-col place-content-center">
+            <div className="mx-auto grid grid-flow-col place-content-center pb-4">
                 <Card className="translate-x-16 scale-[0.75]" image={hitrun}></Card>
                 <Card className="z-10 scale-[1.0]" image={rb}></Card>
                 <Card className="-translate-x-28 scale-[0.75]" image={jgt}></Card>
